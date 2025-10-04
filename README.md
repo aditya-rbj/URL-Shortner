@@ -24,5 +24,4 @@ A simple URL shortening service built with **Node.js**, **Express**, and **Postg
 
 ---
 
-## 📁 Project Structure
 
