@@ -1,0 +1,27 @@
+{
+  "name": "url-shortner",
+  "version": "1.0.0",
+  "description": "A simple URL shortener built with Node.js, Express, and PostgreSQL, following the MVC architecture. It allows users to create shortened URLs that redirect to original links.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-rbj/URL-Shortner.git"
+  },
+  "author": "Aditya Tiwari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aditya-rbj/URL-Shortner/issues"
+  },
+  "homepage": "https://github.com/aditya-rbj/URL-Shortner#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.3",
+    "shortid": "^2.2.17"
+  }
+}
