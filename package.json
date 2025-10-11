@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/aditya-rbj/URL-Shortner#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
     "pg": "^8.16.3",
