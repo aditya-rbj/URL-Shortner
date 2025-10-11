@@ -7,6 +7,11 @@ const shortid = require("shortid");
 
 const handleUrlShortening = async (req, res) => {
   const { originalUrl } = req.body;
+  const user = req.user; // ✅ Use the verified user from middleware
+  if (!user) {
+    res.status(401).json({ message: "Unauthorized: No user ID found" });
+    return;
+  }
   if (!originalUrl) {
     res.status(400).json({ message: "Original URL is required" });
     return;
@@ -26,6 +31,11 @@ const handleUrlShortening = async (req, res) => {
 
 const handleUrlRedirect = async (req, res) => {
   const { shortCode } = req.params;
+  const user = req.user; // ✅ Use the verified user from middleware
+  if (!user) {
+    res.status(401).json({ message: "Unauthorized: No user ID found" });
+    return;
+  }
   if (!shortCode) {
     res.status(400).json({ message: "Short code is required" });
     return;
@@ -40,6 +50,11 @@ const handleUrlRedirect = async (req, res) => {
 };
 
 const handleAllUrls = async (req, res) => {
+  const user = req.user; // ✅ Use the verified user from middleware
+  if (!user) {
+    res.status(401).json({ message: "Unauthorized: No user ID found" });
+    return;
+  }
   try {
     const result = await getAllUrls();
     res.status(200).json(result);
