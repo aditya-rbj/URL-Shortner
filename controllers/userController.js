@@ -1,4 +1,7 @@
+const jwt = require("jsonwebtoken");
 const { getUserByEmail, addUser } = require("../models/userModel");
+
+const seceret = "Dmrkj@12345";
 
 const handleSignup = async (req, res) => {
   const { email, password } = req.body;
@@ -38,12 +41,21 @@ const handleLogin = async (req, res) => {
       res.status(400).json({ message: "Invalid Credentials" });
       return;
     }
-    res.cookie("user_id", user?.[0]?.new_id);
-    res.status(200).json({ message: "Login Successful" });
+    // res.cookie("user_id", user?.[0]?.new_id);  ----> this is statefull authentication where we store user_id in cookies
+
+    const data = { email: user?.[0]?.email, id: user?.[0]?.new_id };
+    const token = jwt.sign(data, seceret);
+    res.status(200).json({ message: "Login Successful", login: { token } });
   } catch (err) {
     console.error("Error logging in user:", err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-module.exports = { handleSignup, handleLogin };
+const handleLogout = (req, res) => {
+  // For JWT, logout is typically handled on the client side by deleting the token.
+  // If using cookies or sessions, you would clear the cookie or destroy the session here.
+  res.status(200).json({ message: "Logout Successful" });
+};
+
+module.exports = { handleSignup, handleLogin, handleLogout };
