@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/aditya-rbj/URL-Shortner#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",

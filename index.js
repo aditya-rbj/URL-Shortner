@@ -1,30 +1,18 @@
 const express = require("express");
-var cookieParser = require("cookie-parser");
-// const pool = require("./db");
+const userRouter = require("./routers/userRoutes");
+const todoRouter = require("./routers/todoRoutes");
+const { handleValidUser } = require("./middleware/auth");
 
-const urlRouter = require("./routers/urlRoute");
-const userRoute = require("./routers/userRoute");
-const { isValidUser } = require("./middleware/authMiddleware");
+const PORT = 8000;
 
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser());
 
-app.use("/user", userRoute);
+app.use("/user", userRouter);
 
-app.use("/", isValidUser, urlRouter);
+app.use("/todo", handleValidUser, todoRouter);
 
-// Test Db connection
-// (async () => {
-//   try {
-//     const res = await pool.query("SELECT NOW()");
-//     console.log("Database connected successfully at:", res.rows[0].now);
-//   } catch (err) {
-//     console.error("Database connection error:", err.stack);
-//   }
-// })();
-
-app.listen(8000, () => {
-  console.log("Server has started");
+app.listen(PORT, () => {
+  console.log("server has started at port", PORT);
 });
